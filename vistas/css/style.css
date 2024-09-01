@@ -93,7 +93,7 @@ BANNER
 }
 
 .bannerEstatico {
-  background: rgba(0, 0, 0, 0);
+  background: rgba(21, 26, 45, 0);
 }
 
 .textoBanner {
@@ -128,7 +128,7 @@ MENÚ
   z-index: 100;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(21, 26, 45, 0.8);
   overflow-x: hidden;
   font-weight: 300;
   display: none;
@@ -206,14 +206,18 @@ GRID CATEGORIAS
   left: 0px;
   bottom: -16px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(21, 26, 45, 0.8);
   color: white;
-  font-weight: 100;
-  font-size: 20px;
+  font-family: "Acme", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  text-align: center;
+  text-transform: capitalize !important;
 }
 
 .grid figure p:hover {
-  background: rgba(255, 57, 190, 0.7);
+  background: rgb(8, 14, 38);
 }
 
 /*=============================================
@@ -253,9 +257,9 @@ CONTENIDO
   padding: 5px 11px;
   color: #aaa;
   font-size: 14px;
-  background: url(../img/globo.jpg);
-  background-size: cover;
-  background-position: center top;
+  /* background: url(../img/globo.jpg); */
+  /* background-size: cover;
+  background-position: center top; */
   height: 40px;
 }
 
@@ -271,7 +275,7 @@ CONTENIDO
 }
 
 .page-item.active .page-link {
-  background: #ff39be;
+  background: rgb(13, 40, 130);
   color: white;
   border: 1px solid #bbb;
 }
@@ -342,14 +346,15 @@ footer {
   left: 0px;
   bottom: -16px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(21, 26, 45, 0.8);
   color: white;
-  font-weight: 100;
-  font-size: 15px;
+  font-family: "Passion One", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .gridFooter figure p:hover {
-  background: rgba(255, 57, 190, 0.7);
+  background: rgba(13, 40, 130, 0.7);
 }
 
 /*=============================================
@@ -373,6 +378,10 @@ TABLET HORIZONTAL (LG revisamos en 1024px)
     margin-top: 15%;
   }
 
+  .bannerEstatico {
+    max-height: 220px;
+  }
+
   .textoBanner h1 {
     font-size: 40px;
   }
@@ -389,6 +398,10 @@ TABLET VERTICAL (MD revisamos en 768px)
 @media (max-width: 991px) and (min-width: 768px) {
   header .logotipo {
     width: 55%;
+  }
+
+  .bannerEstatico {
+    max-height: 180px;
   }
 
   .btnClose {
@@ -431,6 +444,7 @@ TABLET VERTICAL (MD revisamos en 768px)
 
   .grid figure p {
     font-size: 18px;
+    text-transform: capitalize !important;
   }
 
   .fecha {
@@ -467,11 +481,11 @@ MÓVIL HORIZONTAL (SM revisamos en 576px)
 
 @media (max-width: 767px) and (min-width: 576px) {
   header .logotipo {
-    width: 65%;
+    width: 75%;
   }
 
   .fade-slider {
-    height: 72px;
+    max-height: 120px;
   }
 
   .btnClose {
@@ -509,6 +523,7 @@ MÓVIL HORIZONTAL (SM revisamos en 576px)
 
   .grid figure p {
     font-size: 16px;
+    text-transform: capitalize !important;
   }
 
   .breadcrumb-item + .breadcrumb-item::before {
@@ -553,11 +568,11 @@ MOVIL VERTICAL (revisamos en 320px)
 
 @media (max-width: 575px) {
   header .logotipo {
-    width: 100%;
+    width: 80%;
   }
 
   .fade-slider {
-    height: 54px;
+    height: 80px;
   }
 
   .btnClose {
@@ -577,30 +592,43 @@ MOVIL VERTICAL (revisamos en 320px)
 
   .grid .photo1 {
     height: 120px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .grid .photo2 {
     height: 120px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .grid .photo3 {
     height: 120px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .grid .photo4 {
     height: 120px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .grid .photo5 {
     height: 120px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .grid .photo6 {
     height: 120px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
   }
 
   .grid figure p {
     font-size: 14px;
+    text-transform: capitalize !important;
   }
 
   .breadcrumb-item + .breadcrumb-item::before {

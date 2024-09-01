@@ -2,17 +2,17 @@
 BUSCADOR PARA MÓVIL
 ======================================-->
 
-<div style="margin-top:90px" class="container-fluid d-block pb-3 d-md-none bg-white">
-	
-	<div class="input-group input-group-sm">
+<div style="margin-top:90px" class="container-fluid d-block pb-3 d-md-none bg-white buscadorMovil">
 
-		<input type="text" class="form-control buscador" placeholder="Buscar">
+    <div class="input-group input-group-sm">
 
-		<div class="input-group-append">
+        <input type="text" class="form-control buscador" placeholder="Buscar">
 
-			<span class="input-group-text"><i class="fas fa-search buscar"></i></span>
+        <div class="input-group-append">
 
-		</div>
-	</div>
+            <span class="input-group-text"><i class="fas fa-search buscar"></i></span>
+
+        </div>
+    </div>
 
 </div>
