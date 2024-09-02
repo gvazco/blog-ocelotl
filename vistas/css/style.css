@@ -267,11 +267,14 @@ CONTENIDO
   padding: 13px 30px;
   color: #aaa;
   font-size: 15px;
-  background: url(../img/globo.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 60px;
+}
+
+.articulo p {
+  font-size: 12px !important;
 }
 
 .page-item.active .page-link {

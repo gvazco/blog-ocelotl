@@ -1,27 +1,26 @@
-<?php 
+<?php
 
-if(isset($rutas[1])){
+if (isset($rutas[1])) {
 
-	$articulo =  ControladorBlog::ctrMostrarConInnerJoin(0, 1, "ruta_articulo", $rutas[1]);
-	$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos("id_cat", $articulo[0]["id_cat"]);
-	$opiniones = ControladorBlog::ctrMostrarOpiniones("id_art", $articulo[0]["id_articulo"]);
+    $articulo =  ControladorBlog::ctrMostrarConInnerJoin(0, 1, "ruta_articulo", $rutas[1]);
+    $totalArticulos = ControladorBlog::ctrMostrarTotalArticulos("id_cat", $articulo[0]["id_cat"]);
+    $opiniones = ControladorBlog::ctrMostrarOpiniones("id_art", $articulo[0]["id_articulo"]);
 
-	$actualizarVistaArticulo = ControladorBlog::ctrActualizarVista($rutas[1]);
-
+    $actualizarVistaArticulo = ControladorBlog::ctrActualizarVista($rutas[1]);
 }
 
 /*=============================================
 Función para limitar foreach
 =============================================*/
-function limitarForeach($array, $limite){
+function limitarForeach($array, $limite)
+{
 
-	foreach ($array as $key => $value) {
-		
-		if(!$limite--)	break;
+    foreach ($array as $key => $value) {
 
-		yield $key => $value;
-	}
+        if (!$limite--)    break;
 
+        yield $key => $value;
+    }
 }
 
 $anuncios = ControladorBlog::ctrTraerAnuncios("articulos");
@@ -33,327 +32,346 @@ CONTENIDO ARTÍCULO
 ======================================-->
 
 <div class="container-fluid bg-white contenidoInicio py-2 py-md-4">
-	
-	<div class="container">
 
-		<!-- BREADCRUMB -->
+    <div class="container">
 
-		<a href="<?php echo $articulo[0]["ruta_categoria"]; ?>">
-			
-			<button class="d-block d-sm-none btn btn-info btn-sm mb-2">
-			
-				REGRESAR 
+        <!-- BREADCRUMB -->
 
-			</button>
+        <a href="<?php echo $articulo[0]["ruta_categoria"]; ?>">
 
-		</a>
+            <button class="d-block d-sm-none btn btn-info btn-sm mb-2">
 
-		<ul class="breadcrumb bg-white p-0 mb-2 mb-md-4 breadArticulo">
+                REGRESAR
 
-			<li class="breadcrumb-item inicio"><a href="<?php echo $blog["dominio"];?>">Inicio</a></li>
+            </button>
 
-			<li class="breadcrumb-item"><a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]; ?>"><?php echo $articulo[0]["descripcion_categoria"]; ?></a></li>
+        </a>
 
-			<li class="breadcrumb-item active"><?php echo $articulo[0]["titulo_articulo"]; ?></li>
+        <ul class="breadcrumb bg-white p-0 mb-2 mb-md-4 breadArticulo">
 
-		</ul>
-		
-		<div class="row">
-			
-			<!-- COLUMNA IZQUIERDA -->
+            <li class="breadcrumb-item inicio"><a href="<?php echo $blog["dominio"]; ?>">Inicio</a></li>
 
-			<div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
-				
-				<!-- ARTÍCULO 01 -->
+            <li class="breadcrumb-item"><a
+                    href="<?php echo $blog["dominio"] . $articulo[0]["ruta_categoria"]; ?>"><?php echo $articulo[0]["descripcion_categoria"]; ?></a>
+            </li>
 
-				<div class="container">
+            <li class="breadcrumb-item active"><?php echo $articulo[0]["titulo_articulo"]; ?></li>
 
-					<div class="d-flex">
-					
-						<div class="fechaArticulo"><?php echo $articulo[0]["fecha_articulo"]; ?></div>
+        </ul>
 
-						<h3 class="tituloArticulo text-right text-muted pl-3 pt-lg-2"><?php echo $articulo[0]["titulo_articulo"]; ?></h3>
+        <div class="row">
 
-					</div>
+            <!-- COLUMNA IZQUIERDA -->
 
-					<?php 
+            <div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
 
-						echo $articulo[0]["contenido_articulo"];
-					
-					?>
+                <!-- ARTÍCULO 01 -->
 
-					 
-					<!-- COMPARTIR EN REDES -->
+                <div class="container articulo">
 
-					<div class="float-right my-3 btnCompartir">
-						
-						<div class="btn-group text-secondary">
+                    <div class="d-flex">
 
-							Si te gustó compártelo:
+                        <div class="fechaArticulo"><?php echo $articulo[0]["fecha_articulo"]; ?></div>
 
-						</div>
-						
-						<div class="btn-group">
-							
-							<button type="button" class="btn border-0 text-white social-share" style="background: #1475E0" data-share="facebook">
-								
-								<span class="fab fa-facebook pr-1"></span>
+                        <h3 class="tituloArticulo text-right text-muted pl-3 pt-lg-2">
+                            <?php echo $articulo[0]["titulo_articulo"]; ?></h3>
 
-								Facebook
+                    </div>
 
-							</button>
+                    <?php
 
-						</div>
+                    echo $articulo[0]["contenido_articulo"];
 
-						<div class="btn-group">
-							
-							<button type="button" class="btn border-0 text-white social-share" style="background: #00A6FF" data-share="twitter">
-								
-								<span class="fab fa-twitter pr-1"></span>
+                    ?>
 
-								Twitter
 
-							</button>
+                    <!-- COMPARTIR EN REDES -->
 
-						</div>
+                    <div class="float-right my-3 btnCompartir">
 
-					</div>
+                        <div class="btn-group text-secondary">
 
-					
-					<div class="clearfix"></div>
+                            Si te gustó compártelo:
 
-					<!-- ETIQUETAS -->
+                        </div>
 
-					<div>
+                        <div class="btn-group">
 
-						<h4>Etiquetas</h4>
+                            <button type="button" class="btn border-0 text-white social-share"
+                                style="background: #1475E0" data-share="facebook">
 
-						<?php 
+                                <span class="fab fa-facebook pr-1"></span>
 
-							$tags = json_decode($articulos[0]["p_claves_articulo"], true);
+                                Facebook
 
-						 ?>
+                            </button>
 
-						 <?php foreach ($tags as $key => $value): ?>
+                        </div>
 
-						 	<a href="<?php echo $blog["dominio"].preg_replace('/[0-9ñÑáéíóúÁÉÍÓÚ ]/', "_", $value); ?>" class="btn btn-secondary btn-sm m-1"><?php echo $value; ?></a> 
-						 	
-						 <?php endforeach ?>		
-		
-													
-					</div>
+                        <div class="btn-group">
 
-					<!-- AVANZAR - RETROCEDER -->
+                            <button type="button" class="btn border-0 text-white social-share"
+                                style="background: #00A6FF" data-share="twitter">
 
-					<?php 
+                                <span class="fab fa-twitter pr-1"></span>
 
-						foreach ($totalArticulos as $key => $value) {
-							
-							
-							if($articulo[0]["id_articulo"] == $value["id_articulo"]){
+                                Twitter
 
-								$posicion = $key;
-					
-							}
-						}
+                            </button>
 
-					 ?>
+                        </div>
 
+                    </div>
 
-				 	<div class="d-md-flex justify-content-between my-3 d-none">
 
-				 	<?php if (($posicion-1) > 0): ?>
+                    <div class="clearfix"></div>
 
-				 		  <a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$totalArticulos[($posicion-1)]["ruta_articulo"] ?>">Leer artículo anterior</a>
-				 		
-				 	<?php endif ?>
-					    
-					<?php if (($posicion+1) < count($totalArticulos)): ?> 
-					    
-					    <a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$totalArticulos[($posicion+1)]["ruta_articulo"] ?>">Leer artículo siguiente</a>
+                    <!-- ETIQUETAS -->
 
-					<?php endif ?>
+                    <div>
 
-				  	</div>
+                        <h4>Etiquetas</h4>
 
-				  	<!-- DESLIZADOR DE ARTÍCULOS -->
+                        <?php
 
-				  	<section class="jd-slider deslizadorArticulos my-4">
-				  		
-						<div class="slide-inner">
-							
-							<ul class="slide-area">
+                        $tags = json_decode($articulos[0]["p_claves_articulo"], true);
 
-							<?php foreach ($totalArticulos as $key => $value): ?>
+                        ?>
 
-								<li class="px-3">
-									
-									<a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"]?>" class="text-secondary">
+                        <?php foreach ($tags as $key => $value): ?>
 
-										<img src="<?php echo $blog["servidor"].$value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
+                        <a href="<?php echo $blog["dominio"] . preg_replace('/[0-9ñÑáéíóúÁÉÍÓÚ ]/', "_", $value); ?>"
+                            class="btn btn-secondary btn-sm m-1"><?php echo $value; ?></a>
 
-										<h6 class="py-2"><?php echo $value["titulo_articulo"]; ?></h6>
+                        <?php endforeach ?>
 
-									</a>
 
-									 <p class="small"><?php echo substr($value["descripcion_articulo"], 0, -110)."..."; ?></p>
+                    </div>
 
-								</li>
+                    <!-- AVANZAR - RETROCEDER -->
 
-								
-							<?php endforeach ?>
-	
-							</ul>
+                    <?php
 
-							<a class="prev" href="#">
+                    foreach ($totalArticulos as $key => $value) {
 
-				                <i class="fas fa-angle-left text-muted"></i>
 
-				            </a>
+                        if ($articulo[0]["id_articulo"] == $value["id_articulo"]) {
 
-				            <a class="next" href="#">
+                            $posicion = $key;
+                        }
+                    }
 
-				                <i class="fas fa-angle-right text-muted"></i>
+                    ?>
 
-				            </a>
 
-						</div>
+                    <div class="d-md-flex justify-content-between my-3 d-none">
 
-						 <div class="controller">
+                        <?php if (($posicion - 1) > 0): ?>
 
-				            <div class="indicate-area"></div>
+                        <a
+                            href="<?php echo $blog["dominio"] . $articulo[0]["ruta_categoria"] . "/" . $totalArticulos[($posicion - 1)]["ruta_articulo"] ?>">Leer
+                            artículo anterior</a>
 
-				        </div>
+                        <?php endif ?>
 
-				  	</section>
+                        <?php if (($posicion + 1) < count($totalArticulos)): ?>
 
-				  	<!-- BLOQUE DE OPINIONES -->
+                        <a
+                            href="<?php echo $blog["dominio"] . $articulo[0]["ruta_categoria"] . "/" . $totalArticulos[($posicion + 1)]["ruta_articulo"] ?>">Leer
+                            artículo siguiente</a>
 
-				  	<h3 style="color:#8e4876">Opiniones</h3>
+                        <?php endif ?>
 
-				  	<hr style="border: 1px solid #79FF39">
-					
-					<div class="row opiniones">
+                    </div>
 
-					<?php if (count($opiniones) != 0): ?>
+                    <!-- DESLIZADOR DE ARTÍCULOS -->
 
-						<?php foreach ($opiniones as $key => $value): ?>
+                    <section class="jd-slider deslizadorArticulos my-4">
 
-							<?php if ($value["aprobacion_opinion"] == 1): ?>
-							
-								<div class="col-3 col-sm-4 col-lg-2 p-2">
-							
-									<img src="<?php echo $blog["servidor"].$value["foto_opinion"];?>" class="img-thumbnail">	
+                        <div class="slide-inner">
 
-								</div>
+                            <ul class="slide-area">
 
-								<div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
-									
-									<p><?php echo $value["contenido_opinion"]; ?></p>
+                                <?php foreach ($totalArticulos as $key => $value): ?>
 
-									<?php 
+                                <li class="px-3">
 
-									$formatoFecha = strtotime($value["fecha_opinion"]);
-									$formatoFecha = date( 'd.m.Y', $formatoFecha);
+                                    <a href="<?php echo $blog["dominio"] . $articulo[0]["ruta_categoria"] . "/" . $value["ruta_articulo"] ?>"
+                                        class="text-secondary">
 
-									 ?>
+                                        <img src="<?php echo $blog["servidor"] . $value["portada_articulo"]; ?>"
+                                            alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
 
-									<span class="small float-right"><?php echo $value["nombre_opinion"]; ?> | <?php echo $formatoFecha; ?></span>
+                                        <h6 class="py-2"><?php echo $value["titulo_articulo"]; ?></h6>
 
-								</div>	
+                                    </a>
 
-								<?php if ($value["respuesta_opinion"] != null): ?>
+                                    <p class="small">
+                                        <?php echo substr($value["descripcion_articulo"], 0, -110) . "..."; ?></p>
 
-									<div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
-										
-										<p><?php echo $value["respuesta_opinion"]; ?></p>
+                                </li>
 
-										<?php 
 
-										$formatoFechaR = strtotime($value["fecha_respuesta"]);
-										$formatoFechaR = date( 'd.m.Y', $formatoFechaR);
+                                <?php endforeach ?>
 
-										 ?>
+                            </ul>
 
-										<span class="small float-right"><?php echo $value["name"]; ?> | <?php echo $formatoFechaR; ?></span>
+                            <a class="prev" href="#">
 
-									</div>
+                                <i class="fas fa-angle-left text-muted"></i>
 
-									<div class="col-3 col-sm-4 col-lg-2 p-2">
+                            </a>
 
-									<?php if ($value["foto"] != ""): ?>
+                            <a class="next" href="#">
 
-										<img src="<?php echo $blog["servidor"].$value["foto"];?>" class="img-thumbnail">	
+                                <i class="fas fa-angle-right text-muted"></i>
 
-									<?php else: ?>
+                            </a>
 
-										<img src="<?php echo $blog["servidor"];?>/img/administradores/admin.png" class="img-thumbnail">	
-										
-									<?php endif ?>
-									
-										
+                        </div>
 
-									</div>
-																
-								<?php endif ?>
+                        <div class="controller">
 
-							<?php endif ?>
+                            <div class="indicate-area"></div>
 
-						<?php endforeach ?>
+                        </div>
 
-					<?php else: ?>	
+                    </section>
 
-						<p class="pl-3 text-secondary">¡Este artículo no tiene opiniones!</p>
-						
-					<?php endif ?>
+                    <!-- BLOQUE DE OPINIONES -->
 
-					</div>
+                    <h3 style="color:#8e4876">Opiniones</h3>
 
-					<hr style="border: 1px solid #79FF39">
+                    <hr style="border: 1px solid #c40000">
 
-					<!-- FORMULARIO DE OPINIONES -->
-					
-					<form method="post" enctype="multipart/form-data">
+                    <div class="row opiniones">
 
-						<input type="hidden" name="id_art" value="<?php echo $articulo[0]["id_articulo"]; ?>">
-						
-						<label class="text-muted lead">¿Qué tal te pareció el artículo?</label>
+                        <?php if (count($opiniones) != 0): ?>
 
-						<div class="row">
-							
-							<div class="col-12 col-md-8 col-lg-9">
-								
-								<div class="input-group-lg">
-									
-									<input type="text" class="form-control my-3" placeholder="Tu nombre" name="nombre_opinion" required>
+                        <?php foreach ($opiniones as $key => $value): ?>
 
-									<input type="email" class="form-control my-3" placeholder="Tu email" name="correo_opinion" required>
+                        <?php if ($value["aprobacion_opinion"] == 1): ?>
 
-								</div>
+                        <div class="col-3 col-sm-4 col-lg-2 p-2">
 
-							</div>
+                            <img src="<?php echo $blog["servidor"] . $value["foto_opinion"]; ?>" class="img-thumbnail">
 
-							<input type="file" name="fotoOpinion" class="d-none" id="fotoOpinion">
+                        </div>
 
-							<label for="fotoOpinion" class="d-none d-md-block col-md-4 col-lg-3">
-								
-								<img src="<?php echo $blog["servidor"];?>vistas/img/subirFoto.png" class="img-fluid mt-md-3 mt-xl-2 prevFotoOpinion">
+                        <div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
 
-							</label>
+                            <p><?php echo $value["contenido_opinion"]; ?></p>
 
-						</div>	
+                            <?php
 
-						<textarea class="form-control my-3" rows="7" placeholder="Escribe aquí tu mensaje" name="contenido_opinion" required></textarea>
-						
-						<input type="submit" class="btn btn-dark btn-lg btn-block" value="Enviar">
+                                        $formatoFecha = strtotime($value["fecha_opinion"]);
+                                        $formatoFecha = date('d.m.Y', $formatoFecha);
 
-						<?php 
+                                        ?>
 
-							$enviarOpinion = ControladorBlog::ctrEnviarOpinion();
-							
-							if($enviarOpinion != ""){
+                            <span class="small float-right"><?php echo $value["nombre_opinion"]; ?> |
+                                <?php echo $formatoFecha; ?></span>
 
-								echo '<script>
+                        </div>
+
+                        <?php if ($value["respuesta_opinion"] != null): ?>
+
+                        <div class="col-9 col-sm-8 col-lg-10 p-2 text-muted">
+
+                            <p><?php echo $value["respuesta_opinion"]; ?></p>
+
+                            <?php
+
+                                            $formatoFechaR = strtotime($value["fecha_respuesta"]);
+                                            $formatoFechaR = date('d.m.Y', $formatoFechaR);
+
+                                            ?>
+
+                            <span class="small float-right"><?php echo $value["name"]; ?> |
+                                <?php echo $formatoFechaR; ?></span>
+
+                        </div>
+
+                        <div class="col-3 col-sm-4 col-lg-2 p-2">
+
+                            <?php if ($value["foto"] != ""): ?>
+
+                            <img src="<?php echo $blog["servidor"] . $value["foto"]; ?>" class="img-thumbnail">
+
+                            <?php else: ?>
+
+                            <img src="<?php echo $blog["servidor"]; ?>/img/administradores/admin.png"
+                                class="img-thumbnail">
+
+                            <?php endif ?>
+
+
+
+                        </div>
+
+                        <?php endif ?>
+
+                        <?php endif ?>
+
+                        <?php endforeach ?>
+
+                        <?php else: ?>
+
+                        <p class="pl-3 text-secondary">¡Este artículo no tiene opiniones!</p>
+
+                        <?php endif ?>
+
+                    </div>
+
+                    <hr style="border: 1px solid #c40000">
+
+                    <!-- FORMULARIO DE OPINIONES -->
+
+                    <form method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" name="id_art" value="<?php echo $articulo[0]["id_articulo"]; ?>">
+
+                        <label class="text-muted lead">¿Qué tal te pareció el artículo?</label>
+
+                        <div class="row">
+
+                            <div class="col-12 col-md-8 col-lg-9">
+
+                                <div class="input-group-lg">
+
+                                    <input type="text" class="form-control my-3" placeholder="Tu nombre"
+                                        name="nombre_opinion" required>
+
+                                    <input type="email" class="form-control my-3" placeholder="Tu email"
+                                        name="correo_opinion" required>
+
+                                </div>
+
+                            </div>
+
+                            <input type="file" name="fotoOpinion" class="d-none" id="fotoOpinion">
+
+                            <label for="fotoOpinion" class="d-none d-md-block col-md-4 col-lg-3">
+
+                                <img src="<?php echo $blog["servidor"]; ?>vistas/img/subirFoto.png"
+                                    class="img-fluid mt-md-3 mt-xl-2 prevFotoOpinion">
+
+                            </label>
+
+                        </div>
+
+                        <textarea class="form-control my-3" rows="7" placeholder="Escribe aquí tu mensaje"
+                            name="contenido_opinion" required></textarea>
+
+                        <input type="submit" class="btn btn-dark btn-lg btn-block" value="Enviar">
+
+                        <?php
+
+                        $enviarOpinion = ControladorBlog::ctrEnviarOpinion();
+
+                        if ($enviarOpinion != "") {
+
+                            echo '<script>
 
 									if ( window.history.replaceState ) {
 
@@ -363,9 +381,9 @@ CONTENIDO ARTÍCULO
 
 								</script>';
 
-								if($enviarOpinion == "ok"){
+                            if ($enviarOpinion == "ok") {
 
-									echo '<script>
+                                echo '<script>
 
 
 										notie.alert({
@@ -376,12 +394,11 @@ CONTENIDO ARTÍCULO
 										})
 
 									</script>';
+                            }
 
-								}
+                            if ($enviarOpinion == "error") {
 
-								if($enviarOpinion == "error"){
-
-									echo '<script>
+                                echo '<script>
 
 
 										notie.alert({
@@ -392,12 +409,11 @@ CONTENIDO ARTÍCULO
 										})
 
 									</script>';
+                            }
 
-								}
+                            if ($enviarOpinion == "error-formato") {
 
-								if($enviarOpinion == "error-formato"){
-
-									echo '<script>
+                                echo '<script>
 
 
 										notie.alert({
@@ -408,78 +424,81 @@ CONTENIDO ARTÍCULO
 										})
 
 									</script>';
+                            }
+                        }
 
-								}
+                        ?>
 
-							}
+                    </form>
 
-						?>
+                    <!-- PUBLICIDAD -->
 
-					</form>
-
-					<!-- PUBLICIDAD -->
-
-					<img src="<?php echo $blog["servidor"];?>vistas/img/ad01.jpg" class="img-fluid my-3 d-block d-md-none" width="100%">
+                    <img src="<?php echo $blog["servidor"]; ?>vistas/img/ad01.jpg"
+                        class="img-fluid my-3 d-block d-md-none" width="100%">
 
 
-				</div>
+                </div>
 
-			</div>
+            </div>
 
-			<!-- COLUMNA DERECHA -->
+            <!-- COLUMNA DERECHA -->
 
-			<div class="d-none d-md-block pt-md-4 pt-lg-0 col-md-4 col-lg-3">		
+            <div class="d-none d-md-block pt-md-4 pt-lg-0 col-md-4 col-lg-3">
 
-				<!-- ARTÍCULOS RECIENTES -->
+                <!-- ARTÍCULOS RECIENTES -->
 
-				<div class="my-4">
-					
-					<h4>Artículos Recientes</h4>
+                <div class="my-4">
 
-					<?php foreach (limitarForeach($totalArticulos, 3) as $key => $value): ?>
+                    <h4>Artículos Recientes</h4>
 
-						<div class="d-flex my-3">
-						
-							<div class="w-100 w-xl-50 pr-3 pt-2">
-								
-								<a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"]; ?>">
+                    <?php foreach (limitarForeach($totalArticulos, 3) as $key => $value): ?>
 
-									<img src="<?php echo $blog["servidor"].$value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
+                    <div class="d-flex my-3">
 
-								</a>
+                        <div class="w-100 w-xl-50 pr-3 pt-2">
 
-							</div>
+                            <a
+                                href="<?php echo $blog["dominio"] . $articulo[0]["ruta_categoria"] . "/" . $value["ruta_articulo"]; ?>">
 
-							<div>
+                                <img src="<?php echo $blog["servidor"] . $value["portada_articulo"]; ?>"
+                                    alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
 
-								<a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"] ?>" class="text-secondary">
+                            </a>
 
-									<p class="small"><?php echo substr($value["descripcion_articulo"], 0, -150)."..."; ?></p>
+                        </div>
 
-								</a>
+                        <div>
 
-							</div>
+                            <a href="<?php echo $blog["dominio"] . $articulo[0]["ruta_categoria"] . "/" . $value["ruta_articulo"] ?>"
+                                class="text-secondary">
 
-						</div>
-						
-					<?php endforeach ?>
+                                <p class="small"><?php echo substr($value["descripcion_articulo"], 0, -150) . "..."; ?>
+                                </p>
 
-				</div>
+                            </a>
 
-				<!-- PUBLICIDAD -->
+                        </div>
 
-				<?php foreach ($anuncios as $key => $value): ?>
+                    </div>
 
-					<?php echo $value["codigo_anuncio"]; ?>
-					
-				<?php endforeach ?>
-				
+                    <?php endforeach ?>
 
-				
-			</div>
+                </div>
 
-		</div>
+                <!-- PUBLICIDAD -->
 
-	</div>
+                <?php foreach ($anuncios as $key => $value): ?>
+
+                <?php echo $value["codigo_anuncio"]; ?>
+
+                <?php endforeach ?>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
